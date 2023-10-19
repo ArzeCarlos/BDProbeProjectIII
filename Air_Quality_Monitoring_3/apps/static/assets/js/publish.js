@@ -9,7 +9,7 @@ const options = {
 	clean: true,
 };
 var connected = false;
-const WebSocket_URL = "ws://ec2-3-87-119-167.compute-1.amazonaws.com:8083/mqtt";
+const WebSocket_URL = "ws://ec2-54-91-139-105.compute-1.amazonaws.com:8083/mqtt";
 const client = mqtt.connect(WebSocket_URL, options);
 client.on("connect", () => {
   console.log("Mqtt conectado por WS!");
@@ -52,7 +52,7 @@ function log() {
     var elemento=document.getElementById("largeSelect");
     var text = elemento.options[elemento.selectedIndex].text;
     console.log(text);
-    client.publish("values2", text, (error) => {
+    client.publish("vel", text, (error) => {
         console.log(error || "Mensaje enviado!!!");
     });
 };

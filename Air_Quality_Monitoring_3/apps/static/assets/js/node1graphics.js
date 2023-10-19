@@ -352,7 +352,7 @@ const options = {
   clean: true,
 };
 var connected = false;
-const WebSocket_URL = "ws://ec2-3-87-119-167.compute-1.amazonaws.com:8083/mqtt";
+const WebSocket_URL = "ws://ec2-54-91-139-105.compute-1.amazonaws.com:8083/mqtt";
 const client = mqtt.connect(WebSocket_URL, options);
 client.on("connect", () => {
   console.log("Mqtt conectado por WS!");
