@@ -1,0 +1,156 @@
+{% extends "layouts/base.html" %} {% block title %} Node 1 metrics {% endblock
+%}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<br><br><br>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Multi Filter Select</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>nodeId</th>
+              <th>RSSI</th>
+              <th>SNR</th>
+              <th>data</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>nodeId</th>
+              <th>rssi</th>
+              <th>snr</th>
+              <th>data</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for n in node %}
+            <tr>
+              <td>{{n.nodeId}}</td>
+              <td>{{n.rssi}}</td>
+              <td>{{n.snr}}</td>
+              <td>{{n.data}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Multi Filter Select</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select2"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>nodeId</th>
+              <th>RSSI</th>
+              <th>SNR</th>
+              <th>data</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>nodeId</th>
+              <th>rssi</th>
+              <th>snr</th>
+              <th>data</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for n in node %}
+            <tr>
+              <td>{{n.nodeId}}</td>
+              <td>{{n.rssi}}</td>
+              <td>{{n.snr}}</td>
+              <td>{{n.data}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- Atlantis DEMO methods, don't include it in your project! -->
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#multi-filter-select").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-control"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+	 $("#multi-filter-select2").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-control"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+  });
+</script>
+{% endblock javascripts %}

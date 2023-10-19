@@ -1,0 +1,754 @@
+{% extends "layouts/base.html" %} {% block title %} Gateway info{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<div class="content">
+  <div class="page-inner">
+    <div class="page-header">
+      <h4 class="page-title">Gateway</h4>
+      <ul class="breadcrumbs">
+        <li class="nav-home">
+          <a href="#">
+            <i class="flaticon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+          <a href="#">Gateway</a>
+        </li>
+        <li class="separator">
+          <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+          <a href="#">Information</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Gateway Overview</h4>
+          </div>
+          <div class="card-body">
+            <ul
+              class="nav nav-pills nav-secondary nav-pills-no-bd nav-pills-icons justify-content-center"
+              id="pills-tab-with-icon"
+              role="tablist"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="pills-cpu-tab-icon"
+                  data-toggle="pill"
+                  href="#pills-cpu-icon"
+                  role="tab"
+                  aria-controls="pills-cpu-icon"
+                  aria-selected="true"
+                >
+                  <i class="flaticon-laptop"></i>
+                  CPU
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="pills-wifi-tab-icon"
+                  data-toggle="pill"
+                  href="#pills-wifi-icon"
+                  role="tab"
+                  aria-controls="pills-wifi-icon"
+                  aria-selected="false"
+                >
+                  <i class="flaticon-wifi"></i>
+                  Wi-Fi
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="pills-memory-tab-icon"
+                  data-toggle="pill"
+                  href="#pills-memory-icon"
+                  role="tab"
+                  aria-controls="pills-memory-icon"
+                  aria-selected="false"
+                >
+                  <i class="flaticon-database"></i>
+                  Memory
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="pills-cpu-icon"
+                role="tabpanel"
+                aria-labelledby="pills-cpu-tab-icon"
+              >
+                <div class="row row-card-no-pd">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-clock-1 text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">CPU CLOCK</p>
+                              <h4 class="card-title" id="mqtt-cpu-clock"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-web text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">APP-CPU</p>
+                              <h4 class="card-title" id="mqtt-app-cpu"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-web-1 text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">PRO-CPU</p>
+                              <h4 class="card-title" id="mqtt-pro-cpu"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-settings text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">MODEL</p>
+                              <h4 class="card-title" id="mqtt-model"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-card-no-pd">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-mark text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">CORES</p>
+                              <h4 class="card-title" id="mqtt-cores"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-interface-1 text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">FEATURES</p>
+                              <h4 class="card-title" id="mqtt-features"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-multimedia text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">REVISION</p>
+                              <h4 class="card-title" id="mqtt-revision"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-stopwatch text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">XTAL CLOCK</p>
+                              <h4 class="card-title" id="mqtt-xtal-clock"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="pills-wifi-icon"
+                role="tabpanel"
+                aria-labelledby="pills-wifi-tab-icon"
+              >
+                <div class="row row-card-no-pd">
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-list text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">SSID</p>
+                              <h4 class="card-title" id="mqtt-ssid"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-search-1 text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">SCAN METHOD</p>
+                              <h4 class="card-title" id="mqtt-scan-method"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-interface-4 text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">CHANNEL</p>
+                              <h4 class="card-title" id="mqtt-channel"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-internet text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">MAC</p>
+                              <h4 class="card-title" id="mqtt-mac"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-card-no-pd">
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-share text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">BSSID</p>
+                              <h4 class="card-title" id="mqtt-bssid"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-multimedia text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">SORT METHOD</p>
+                              <h4 class="card-title" id="mqtt-sort-method"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-graph-2 text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">THRESHOLD RSSI</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-threshold-rssi"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-lock-1 text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">AUTH MODE</p>
+                              <h4 class="card-title" id="mqtt-auth-mode"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-card-no-pd">
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-layers-1 text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">PROTOCOL</p>
+                              <h4 class="card-title" id="mqtt-protocol"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-interface-3 text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">BANDWIDTH</p>
+                              <h4 class="card-title" id="mqtt-bandwidth"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-wifi text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">RSSI</p>
+                              <h4 class="card-title" id="mqtt-rssi"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="pills-memory-icon"
+                role="tabpanel"
+                aria-labelledby="pills-memory-tab-icon"
+              >
+                <div class="row row-card-no-pd">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-box-1 text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">DRAM-BSS</p>
+                              <h4 class="card-title" id="mqtt-dram-bss"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-box-2 text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">DRAM-DATA</p>
+                              <h4 class="card-title" id="mqtt-dram-data"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-box-3 text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">DRAM-REMANING</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-dram-data-remaining"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-stopwatch text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">DRAM-%</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-dram-porcentage"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-card-no-pd">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-bars-2 text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">IRAM-TEXT</p>
+                              <h4 class="card-title" id="mqtt-iram-text"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-technology-1 text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">IRAM-VECTORS</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-iram-vectors"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-database text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">IRAM-REMANING</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-iram-data-remaining"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-check text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">IRAM-%</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-iram-porcentage"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-card-no-pd">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-list text-primary"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">FLASH-SIZE</p>
+                              <h4 class="card-title" id="mqtt-flash-size"></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-file-1 text-warning"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">FLASH-TEXT</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-flash-text"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-file text-success"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">FLASH-RODATA</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-flash-rodata"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="icon-big text-center">
+                              <i class="flaticon-interface-6 text-danger"></i>
+                            </div>
+                          </div>
+                          <div class="col-7 col-stats">
+                            <div class="numbers">
+                              <p class="card-category">TOTAL IMAGE SIZE</p>
+                              <h4
+                                class="card-title"
+                                id="mqtt-iram-porcentage"
+                              ></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+
+  <!-- Specific Page JS goes HERE  -->
+  {% block javascripts %}
+
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="/static/assets/js/cpu.js"></script>
+
+  {% endblock javascripts %}
+</div>
