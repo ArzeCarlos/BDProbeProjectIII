@@ -2,7 +2,7 @@ from apps.home import blueprint
 from apps import db
 from apps.authentication.forms import CreateNodeDataForm
 from apps.authentication.models import Node,Users
-from flask import render_template, request
+from flask import render_template, request,Response
 from flask_login import login_required
 from paho.mqtt import client as mqtt_client
 from jinja2 import TemplateNotFound
@@ -10,6 +10,9 @@ import random
 import time
 import json
 import sqlite3
+import io
+import csv
+from openpyxl import Workbook
 broker = 'localhost'
 port = 1883
 topic = "values3"
@@ -70,6 +73,44 @@ def index():
         rssiValues.append(b[i].rssi)
     print(rssiValues)'''
     return render_template('home/index.html', segment='index')
+
+@blueprint.route('/download/report/csv1')
+@login_required
+def download_report_csv():
+    output = io.StringIO()
+    writer = csv.writer(output)
+    line = ['nodeId, rssi, snr,data']
+    b=Node.query.order_by(Node.id).all()
+    writer.writerow(line)
+    for i in range(len(b)):
+        line = [str(b[i].nodeId) + ',' + str(b[i].rssi) + ',' + str(b[i].snr) + ',' + str(b[i].data)]
+        writer.writerow(line)
+    output.seek(0)
+    return Response(output, mimetype="text/csv", headers={"Content-Disposition":"attachment;filename=nodeIoT.csv"})
+    
+@blueprint.route('/download/report/xlsx1')
+@login_required
+def download_report_xlsx():
+    b=Node.query.order_by(Node.id).all()
+    wb = Workbook()
+    ws = wb.active
+    ws.append(['nodeId','rssi','snr','data'])
+    for i in range(len(b)):
+        line = [str(b[i].nodeId) , str(b[i].rssi) , str(b[i].snr) , str(b[i].data)]
+        ws.append(line)
+    memoria = io.BytesIO()
+    wb.save(memoria)
+    memoria.seek(0)
+    return Response(
+        memoria,
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment;filename=nodeIoT.xlsx"}
+    ) 
+
+	
+
+
+ 
 @blueprint.route('/<template>')
 @login_required
 def route_template(template):

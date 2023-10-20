@@ -3,11 +3,16 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
-<br><br><br>
+<br /><br /><br />
 <div class="col-md-12">
+  
   <div class="card">
+    
     <div class="card-header">
       <h4 class="card-title">Multi Filter Select</h4>
+      <br>
+      <a href="{{ url_for('.download_report_csv') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
+      <a href="{{ url_for('.download_report_xlsx') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -124,7 +129,7 @@
           });
       },
     });
-	 $("#multi-filter-select2").DataTable({
+    $("#multi-filter-select2").DataTable({
       pageLength: 5,
       initComplete: function () {
         this.api()
