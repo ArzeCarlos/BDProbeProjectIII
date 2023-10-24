@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %} {% block title %} Node 1 metrics {% endblock
+{% extends "layouts/base.html" %} {% block title %} Node 2 metrics {% endblock
 %}
 
 <!-- Specific Page CSS goes HERE  -->
@@ -9,10 +9,10 @@
   <div class="card">
     
     <div class="card-header">
-      <h4 class="card-title">Node 1</h4>
+      <h4 class="card-title">Node 2</h4>
       <br>
-      <a href="{{ url_for('.download_report_csv') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
-      <a href="{{ url_for('.download_report_xlsx') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
+      <a href="{{ url_for('.download_report_csv2') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
+      <a href="{{ url_for('.download_report_xlsx2') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -26,12 +26,8 @@
               <th>gatewayId</th>
               <th>RSSI</th>
               <th>SNR</th>
-              <th>CO2</th>
-              <th>TVOC</th>
-              <th>uvLevel</th>
-              <th>refLevel</th>
-              <th>outputVoltage</th>
-              <th>uvIntensity</th>
+              <th>CO</th>
+              <th>NO2</th>
               <th>time</th>
             </tr>
           </thead>
@@ -41,17 +37,13 @@
               <th>gatewayId</th>
               <th>RSSI</th>
               <th>SNR</th>
-              <th>CO2</th>
-              <th>TVOC</th>
-              <th>uvLevel</th>
-              <th>refLevel</th>
-              <th>outputVoltage</th>
-              <th>uvIntensity</th>
+              <th>CO</th>
+              <th>NO2</th>
               <th>time</th>
             </tr>
           </tfoot>
           <tbody>
-            {% for n in node1 %}
+            {% for n in node2 %}
             <tr>
               <td>{{n.nodeId}}</td>
               <td>{{n.gatewayId}}</td>
@@ -59,10 +51,6 @@
               <td>{{n.snr}}</td>
               <td>{{n.data1}}</td>
               <td>{{n.data2}}</td>
-              <td>{{n.data3}}</td>
-              <td>{{n.data4}}</td>
-              <td>{{n.data5}}</td>
-              <td>{{n.data6}}</td>
               <td>{{n.time}}</td>
             </tr>
             {% endfor %}
@@ -109,6 +97,7 @@
           });
       },
     });
+   
   });
 </script>
 {% endblock javascripts %}

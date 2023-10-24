@@ -1,0 +1,283 @@
+{% extends "layouts/base.html" %} {% block title %} Gateway metrics {% endblock
+%}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<br /><br /><br />
+<div class="col-md-12">
+  
+  <div class="card">
+    
+    <div class="card-header">
+      <h4 class="card-title">CPU </h4>
+      <br>
+      <a href="{{ url_for('.download_report_csv3') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
+      <a href="{{ url_for('.download_report_xlsx3') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>procpu</th>
+              <th>appcpu</th>
+              <th>model</th>
+              <th>cores</th>
+              <th>features</th>
+              <th>revision</th>
+              <th>clkcpu</th>
+              <th>xtalcpu</th>
+              <th>time</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>procpu</th>
+              <th>appcpu</th>
+              <th>model</th>
+              <th>cores</th>
+              <th>features</th>
+              <th>revision</th>
+              <th>clkcpu</th>
+              <th>xtalcpu</th>
+              <th>time</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for n in gateway %}
+            <tr>
+              <td>{{n.procpu}}</td>
+              <td>{{n.appcpu}}</td>
+              <td>{{n.model}}</td>
+              <td>{{n.cores}}</td>
+              <td>{{n.features}}</td>
+              <td>{{n.revision}}</td>
+              <td>{{n.clkcpu}}</td>
+              <td>{{n.xtalcpu}}</td>
+              <td>{{n.time}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">WiFi</h4>
+        <br>
+      <a href="{{ url_for('.download_report_csv4') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
+      <a href="{{ url_for('.download_report_xlsx4') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select2"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>SSID</th>
+              <th>Scan method</th>
+              <th>channel</th>
+              <th>MAC</th>
+              <th>BSSID</th>
+              <th>Sort method</th>
+              <th>RSSI threshold</th>
+              <th>Auth mode</th>
+              <th>Protocol</th>
+              <th>Bandwidth</th>
+              <th>RSSI real</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>SSID</th>
+              <th>Scan method</th>
+              <th>channel</th>
+              <th>MAC</th>
+              <th>BSSID</th>
+              <th>Sort method</th>
+              <th>RSSI threshold</th>
+              <th>Auth mode</th>
+              <th>Protocol</th>
+              <th>Bandwidth</th>
+              <th>RSSI real</th>
+              <th>Time</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for n in wifi %}
+            <tr>
+              <td>{{n.ssid}}</td>
+              <td>{{n.scanmethod}}</td>
+              <td>{{n.channel}}</td>
+              <td>{{n.mac}}</td>
+              <td>{{n.bssid}}</td>
+              <td>{{n.sortmethod}}</td>
+              <td>{{n.rssithr}}</td>
+              <td>{{n.authmode}}</td>
+              <td>{{n.protocol}}</td>
+              <td>{{n.bandwidth}}</td>
+              <td>{{n.rssireal}}</td>
+              <td>{{n.time}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Memory</h4>
+    <br>
+      <a href="{{ url_for('.download_report_csv5') }}" class="btn btn-white btn-border btn-round mr-2">Generate CSV Report</a>
+      <a href="{{ url_for('.download_report_xlsx5') }}" class="btn btn-white btn-border btn-round mr-2">Generate XLSX Report</a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select3"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>DRAM data</th>
+              <th>DRAM BSS</th>
+              <th>IRAM text</th>
+              <th>IRAM vectors</th>
+              <th>Flash text</th>
+              <th>Flash size</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>DRAM data</th>
+              <th>DRAM BSS</th>
+              <th>IRAM text</th>
+              <th>IRAM vectors</th>
+              <th>Flash text</th>
+              <th>Flash size</th>
+              <th>Time</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for n in memory %}
+            <tr>
+              <td>{{n.dramdata}}</td>
+              <td>{{n.drambss}}</td>
+              <td>{{n.iramtext}}</td>
+              <td>{{n.iramvectors}}</td>
+              <td>{{n.flashtext}}</td>
+              <td>{{n.flashsize}}</td>
+              <td>{{n.time}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- Atlantis DEMO methods, don't include it in your project! -->
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#multi-filter-select").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-control"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+    $("#multi-filter-select2").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-control"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+    $("#multi-filter-select3").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-control"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+  });
+</script>
+{% endblock javascripts %}

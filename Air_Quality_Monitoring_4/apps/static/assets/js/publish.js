@@ -9,7 +9,7 @@ const options = {
 	clean: true,
 };
 var connected = false;
-const WebSocket_URL = "ws://ec2-54-91-139-105.compute-1.amazonaws.com:8083/mqtt";
+const WebSocket_URL = "ws://localhost:8083/mqtt";
 const client = mqtt.connect(WebSocket_URL, options);
 client.on("connect", () => {
   console.log("Mqtt conectado por WS!");
@@ -18,13 +18,6 @@ client.on("connect", () => {
       console.log("Suscripción exitosa!");
     } else {
       console.log("Suscripción fallida!");
-    }
-  });
-  client.subscribe("values2", { qos: 0 }, (error) => {
-    if (!error) {
-      console.log("Suscripción exitosa2!");
-    } else {
-      console.log("Suscripción fallida2!");
     }
   });
   // publish(topic, payload, options/callback)
@@ -52,7 +45,11 @@ function log() {
     var elemento=document.getElementById("largeSelect");
     var text = elemento.options[elemento.selectedIndex].text;
     console.log(text);
-    client.publish("vel", text, (error) => {
+    var data={
+      velgateway:text
+    }
+    var json = JSON.stringify(data);
+    client.publish("vel", json, (error) => {
         console.log(error || "Mensaje enviado!!!");
     });
 };

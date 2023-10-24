@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %} {% block title %} Node 1 graphics. {% endblock
+{% extends "layouts/base.html" %} {% block title %} Node 2 graphics. {% endblock
 %}
 
 <!-- Specific Page CSS goes HERE  -->
@@ -16,16 +16,13 @@
             <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
               <div class="px-2 pb-2 pb-md-0 text-center">
                 <div id="circles-1"></div>
-                <h6 class="fw-bold mt-3 mb-0">CO2</h6>
+                <h6 class="fw-bold mt-3 mb-0">CO</h6>
               </div>
               <div class="px-2 pb-2 pb-md-0 text-center">
                 <div id="circles-2"></div>
-                <h6 class="fw-bold mt-3 mb-0">TVOC</h6>
+                <h6 class="fw-bold mt-3 mb-0">NO2</h6>
               </div>
-              <div class="px-2 pb-2 pb-md-0 text-center">
-                <div id="circles-3"></div>
-                <h6 class="fw-bold mt-3 mb-0">UV</h6>
-              </div>
+           
             </div>
           </div>
         </div>
@@ -36,7 +33,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-head-row">
-              <div class="card-title">CO2 Graph</div>
+              <div class="card-title">CO Graph</div>
               <div class="card-tools">
                 <a
                   href="#"
@@ -70,7 +67,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-head-row">
-              <div class="card-title">TVOC Graph</div>
+              <div class="card-title">NO2 Graph</div>
               <div class="card-tools">
                 <a
                   href="#"
@@ -95,38 +92,6 @@
               <canvas id="statisticsChart2"></canvas>
             </div>
             <div id="myChartLegend2"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-head-row">
-              <div class="card-title">UV Graph</div>
-              <div class="card-tools">
-                <a
-                  href="#"
-                  class="btn btn-info btn-border btn-round btn-sm mr-2"
-                >
-                  <span class="btn-label">
-                    <i class="fa fa-pencil"></i>
-                  </span>
-                  Export
-                </a>
-                <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                  <span class="btn-label">
-                    <i class="fa fa-print"></i>
-                  </span>
-                  Print
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart-container" style="min-height: 375px">
-              <canvas id="statisticsChart3"></canvas>
-            </div>
-            <div id="myChartLegend3"></div>
           </div>
         </div>
       </div>
@@ -207,5 +172,5 @@
 {% block javascripts %}
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-<script src="/static/assets/js/node1graphics.js"></script>
+<script src="/static/assets/js/node2graphics.js"></script>
 {% endblock javascripts %}
